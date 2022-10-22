@@ -61,6 +61,11 @@ public class SpinningRecord extends PApplet {
         PApplet.main(SpinningRecord.class.getName());
     }
     
+    
+    
+    
+    
+    
     /*********************** DO NOT MODIFY THE CODE BELOW ********************/
 
     void rotateImage(PImage image, int amountToRotate) {
