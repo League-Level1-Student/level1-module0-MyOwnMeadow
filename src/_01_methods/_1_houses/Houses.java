@@ -10,7 +10,7 @@ import org.jointheleague.graphical.robot.Robot;
  *    Level 1
  */
 public class Houses {
-	static boolean randomness = false;		//Set to "True" if you want a random city
+	static boolean randomness = true;		//Set to "True" if you want a random city
 	public void run() {
 	//Set up
 		Robot robert = new Robot();
