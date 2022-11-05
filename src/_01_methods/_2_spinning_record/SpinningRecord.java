@@ -42,6 +42,8 @@ public class SpinningRecord extends PApplet {
     Song song = new Song("awesomeTrack.mp3");
     PImage pictureOfRecord;
     static int spin = 10;
+    int sped = 5;
+    int spinTime = 0;
     
     @Override
     public void settings() {
@@ -57,10 +59,20 @@ public class SpinningRecord extends PApplet {
 
     @Override
     public void draw() {
-    	if(mousePressed == true) {
+    	//	sped -= spinTime;
+    //		spinTime = 0;
+        	if(mousePressed == true) {
     		rotateImage(pictureOfRecord, spin);
     		image(pictureOfRecord, 0, 0);
-    		spin += 5;
+    		
+    	//	if(spinTime <= 10) {
+    	//		spinTime += 1;
+    		//	sped += spinTime;
+    	//	}
+    	//	else {
+    	//		sped -= spinTime;
+    	//	}
+    		spin += sped;
     	}  
     }
 
