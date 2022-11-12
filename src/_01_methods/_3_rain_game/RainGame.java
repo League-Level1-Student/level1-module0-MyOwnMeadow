@@ -51,15 +51,26 @@ public class RainGame extends PApplet {
     Random ran = new Random();
     
     int score = 0;
-    int bucketWidth = WIDTH/12;
+    int bucketWidth = 50;
     int bucketHeight = 20;
     int xBuck = 100;
-    int yBuck = HEIGHT - 50;
+    int yBuck = HEIGHT - 60;
     PImage bucket;
-    int y = 0;
+    int y = 50;
     int x = 0;
+    
+   //Difficulty
 	int sped = 5;
+	int skore = 0;
+	int cathc = 5;
+	int miss = 2;
 
+//Cloud Setings
+	int cloudW = 120;
+	int cloudH = 20;
+	int cloudX = 50;
+	int cloudFrunt = 50;
+	
     // Sets the size of your canvas
     @Override
     public void settings() {
@@ -73,25 +84,68 @@ public class RainGame extends PApplet {
 
     @Override
     public void draw() {
-    	background(90, 90, 110);
+    	background(100, 100, 150);
+  
+//DIFICALTY:
     	
+    	if(sped >= 100) {
+    		sped = 100;
+    	}
+    	else {
+    		sped = (skore/10) + 5;
+    	}
+    	
+    //Clouds
+    	fill(90, 90, 110);
+    	stroke(120, 120, 150);
+    	ellipse(cloudX, cloudFrunt, cloudW, cloudH);
+    	ellipse(cloudX + 100, cloudFrunt, cloudW, cloudH);
+    	ellipse(cloudX + 200, cloudFrunt, cloudW, cloudH);
+    	ellipse(cloudX + 300, cloudFrunt, cloudW, cloudH);
+    	ellipse(cloudX + 400, cloudFrunt, cloudW, cloudH);
+    	ellipse(cloudX + 500, cloudFrunt, cloudW, cloudH);  
+    
+    //Cloud Line
+    	noStroke();
+    	rect(0, 0, WIDTH, 50);
     //Bucket
+    	xBuck = mouseX - (bucketWidth/2);
     	fill(100, 50, 50);
     	stroke(50, 20, 20);
     	rect(xBuck, yBuck, bucketWidth, bucketHeight);
-
+    	noStroke();
+    	rect(xBuck, yBuck, bucketWidth, 2);
+    	
     //Rain Drop
     	fill(0, 0, 200);
-		stroke(0, 0, 50);
+    	noStroke();
 		ellipse(x, y, 5, 15);
     	
 		if(y > HEIGHT) {
-			y = 0;
+			y = 50;
 			x = ran.nextInt(WIDTH - 8) +4;
+			if(skore >= miss) {
+				skore -= miss;
+				println("SCORE: " + skore);
+			}
+			else if(skore > 0) {
+				skore = 0;
+				println("SCORE: " + skore);
+			}
+		}
+		else if(y >= yBuck && x >= xBuck && x <= (xBuck + bucketWidth)) {
+			skore += cathc;
+			y = 50;
+			x = ran.nextInt(WIDTH - 8) +4;
+			println("SCORE: " + skore);
 		}
 		else {
 			y += sped;
 		}
+	//Score print
+		fill(0, 0, 50);
+	    textSize(20);
+	    text("SCORE: " + skore, 20, 20);
     }
 
     static public void main(String[] args) {
