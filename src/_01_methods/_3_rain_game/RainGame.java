@@ -60,9 +60,9 @@ public class RainGame extends PApplet {
     int x = 0;
     
    //Difficulty
-	int sped = 5;
+	int sped = 2;
 	int skore = 0;
-	int cathc = 5;
+	int cathc = 1;
 	int miss = 2;
 
 //Cloud Setings
