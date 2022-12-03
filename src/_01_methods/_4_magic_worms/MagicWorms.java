@@ -50,12 +50,23 @@ public class MagicWorms extends PApplet {
 
     @Override
     public void draw() {
-    	fill(200, 50, 50);
-    	stroke(100, 10, 10);
+    	makeMagical();
+    	
+    	float red = random(150)+100;
+    	float green = random(150);
+    	float blue = random(150)+100;
+    	
     	
     	for(int i = 0; i < 300; i += 1) {
-    		x = getWormX(600);
-    		y = getWormY(400);
+    	//	red = random(150)+100;
+        //	green = random(150);
+        //	blue = random(150)+100;
+    		
+    		fill(red, green, blue);
+        	stroke(red - 10, 10, blue - 10);
+        	
+    		x = getWormX(i);
+    		y = getWormY(i);
        		ellipse(x, y, eliWith, eliHight);
     	}
     }
@@ -65,7 +76,7 @@ public class MagicWorms extends PApplet {
     }
 
     /*********************** DO NOT MODIFY THE CODE BELOW ********************/
-    float frequency = 0.001f;
+    float frequency = 0.005f;
     float noiseInterval = PI;
 
     void makeMagical() {
