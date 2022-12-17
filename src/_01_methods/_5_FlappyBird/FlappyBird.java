@@ -22,6 +22,7 @@ public class FlappyBird extends PApplet {
 	int gravBirb = 1;
 	int startBounce = -20;
 	int bounceDecayRate = 7;
+	int forgiveness = 20;
 	
 	//PIPE
 	int scrolSpedStart = 5;
@@ -34,9 +35,11 @@ public class FlappyBird extends PApplet {
 	int fallrateB = startFallrate;
 	int bounce = startBounce;
 	int bounceDecay = -startBounce/bounceDecayRate;
+	int score = 0;
 	
 	//Pipe
 	float scrolSped = scrolSpedStart;
+	int pipeGapY = pipeGap + pipeY;
 	
     @Override
     public void settings() {
@@ -70,7 +73,7 @@ public class FlappyBird extends PApplet {
     //Temp pipe top
     	fill(100, 200, 100);
     	stroke(0, 100, 0);
-    	rect(pipeX, pipeY + pipeGap, pipeSize, 1000);
+    	rect(pipeX, pipeY - pipeGap - 1000, pipeSize, 1000);
     	
     //BIRB fall
     	if(relY < HEIGHT - fallrateB) {
@@ -82,6 +85,13 @@ public class FlappyBird extends PApplet {
     		bounce += bounceDecay;
     	}
     	fallrateB += gravBirb;
+    //BIRB FAILLLLLLLLlllllllliiiiiiii
+    	if(relY <= pipeY + forgiveness && relY >= pipeGapY - forgiveness) {
+    		score += 1;
+    	}
+    	else if(pipeX <= relX) {
+    		System.exit(0);
+    	}
     	
     //PIPE scrol
     	pipeX -= scrolSped;
@@ -89,6 +99,7 @@ public class FlappyBird extends PApplet {
     	if(pipeX <= - pipeSize - 1) {
     		pipeX = WIDTH + 50;
     		pipeY = (int) random(HEIGHT - 100);
+    		pipeGapY = pipeGap + pipeY;
     	}
     }
 
