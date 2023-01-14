@@ -19,19 +19,19 @@ public class FlappyBird extends PApplet {
 //Setings
 	
 	//BIRB
-	int startFallrate = 1;
+	int startFallrate = 0;
 	int gravBirb = 1;
 	int startBounce = -20;
 	int bounceDecayRate = 7;
-	int forgiveness = 20;					//How much you can clip into the pipe
 	
 	//PIPE
-	int scrolSpedStart = 5;
+	int scrolSpedStart = 4;
 	int scrolIncrece = 1;
-	int pipeGap = 200;						//Size of gap
+	int pipeGap = 250;						//Size of gap
+	int forgiveness = 15;					//How much you can clip into the pipe
 	
 	//GROUND
-	int gHeight = 100;
+	int gHight = 25; 						//Hight of ground (VISUAL ONLY UNFORCHENTLY)
 	boolean gKill = true;
 	
 //Core Mecanics
@@ -70,16 +70,13 @@ public class FlappyBird extends PApplet {
 //Code Runner
     @Override
     public void draw() {
-    	System.out.println(loss);
-    	
 		paint();
 		if(!loss) {
     		crash();
     		pipeScrol();
-    		fill(0, 0, 0);
-    		textSize(10);
-    		println("SCORE: " + score);
-    		text("SCORE: " + score, 0, 0);
+    		fill(0, 100, 100);
+    		textSize(30);
+    		text("SCORE: " + score, 0, 30);
     	}
     	else if(loss) {
     		textSize(HEIGHT/12);
@@ -110,12 +107,11 @@ public class FlappyBird extends PApplet {
         //Ground
         	fill(80, 100, 0);
         	noStroke();
-        	rect(0, HEIGHT - gHeight, WIDTH, 1000);
+        	rect(0, HEIGHT - gHight, WIDTH, 1000);
         	
         //Score
     		fill(0, 0, 80);
     		textSize(10);
-    		println("SCORE: " + score);
     		text("SCORE: " + score, 0, 0);
     }
     public void grav() {
@@ -127,6 +123,10 @@ public class FlappyBird extends PApplet {
     		relY = HEIGHT;
     		fallrateB = bounce;
     		bounce += bounceDecay;
+    		
+    		if(gKill == true) {
+    			loss = true;
+    		}
     	}
     	fallrateB += gravBirb;
     }
@@ -138,9 +138,6 @@ public class FlappyBird extends PApplet {
     	else if(pipeX <= relX && relX <= pipeX + 20) {
     		loss = true;
     	}
-    	if(relY >= HEIGHT) {
-    		
-    	}
     }
     public void pipeScrol() {
         //PIPE scrol
@@ -148,9 +145,10 @@ public class FlappyBird extends PApplet {
     	
     	if(pipeX <= - pipeSize - 1) {
     		pipeX = WIDTH + 50;
-    		pipeY = (int) random(HEIGHT - 100) + pipeGap + 50;
+    		pipeY = (int) random(HEIGHT - 125) + pipeGap + 50;
     		pipeGapY = pipeY - pipeGap;
     		score += 1;
+    		println("SCORE: " + score);
     	}
     }
     static public void main(String[] args) {

@@ -14,23 +14,30 @@ import org.jointheleague.graphical.robot.Robot;
 public class FinishLine {
 	static Robot rob = new Robot("mini");
 	static int totalDistance;
+	static int sped = 50;
 	
 	public static void main(String[] args) {
 		//1. Call the drawFinishLine() method
-		
+		rob.hide();
+		drawFinishLine();
 		//2. Call the crazyMove() method to move the robot
-		
+		rob.show();
+		rob.setSpeed(sped);
+		rob.setPenColor(0, 0, 50);
+		crazyMove();
 		//3. Call the getTotalDistance() and save what is returned into a variable
-		
+		int tDistence = getTotalDistance();
 		//4. Call the hasCrossedFinishLine() method and save what is returned into a variable
-		
+		boolean win = hasCrossedFinishLine();
 		//5. If the robot has crossed the finish line... 
-			
+		if(win == true) {
 			//6. Use a pop up to say the robot finished and how far it went
-		
-		
+			JOptionPane.showMessageDialog(null, "Congragulations! Rob has crossed the finish line!\n They went a todal of " + tDistence + " yards.");
+		}
 		//7. Else use a pop up to say the robot did not finish and how far it went
-		
+		else {
+			JOptionPane.showMessageDialog(null, "Unforchently, Rob did not make it. They whiped out after " + tDistence + " yards.");
+		}
 	}
 	
 	static void crazyMove() {
@@ -53,8 +60,9 @@ public class FinishLine {
 	}
 	
 	static void drawFinishLine() {
-		rob.setSpeed(100);
+		rob.setSpeed(200);
 		rob.penDown();
+		rob.setPenColor(100, 0, 0);
 		
 		//Lines
 		rob.setX(0);
@@ -64,6 +72,9 @@ public class FinishLine {
 		rob.setY(250);
 		rob.turn(180);
 		rob.move(1000);
+		
+		//Color Change
+		rob.setPenColor(0, 50, 0);
 		
 		//F
 		rob.setX(300);
