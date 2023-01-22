@@ -12,6 +12,9 @@ public class TooManyShapes {
 	static Robot rob = new Robot();
 
 	public static void main(String[] args) {
+		boolean drawing = true;
+		rob.show();
+		while(drawing == true) {
 		//1. Ask the user how many sides they want their shape to be
 		String sideS = JOptionPane.showInputDialog("How many sides do you want?");
 		int sideNum = Integer.parseInt(sideS);
@@ -20,16 +23,33 @@ public class TooManyShapes {
 		int shapeNum = Integer.parseInt(shapeS);
 		//3. Call canMakeShape() and save what is returned into a variable
 		boolean shapeInStock = canMakeShape(sideNum);
+		
+		
 		//4. If the shape CAN be drawn
-		
+		if(shapeInStock == true) {
 			//5. Call and save what is returned from calculateTurnAngle()
-		
+			int turnAngle = calculateTurnAngle(sideNum);
 			//6. Use drawPolygons() to draw your shape
-		
+			drawPolygons(sideNum, shapeNum, turnAngle);
+		}
 		//7. If the shape CANNOT be drawn 
-			
+		else {
 			//8. Call notEnoughSides() and print out what is returned 
+			System.out.println(notEnoughSides());
+			JOptionPane.showMessageDialog(null, notEnoughSides());
+		}
 		
+		String drawMoreS = JOptionPane.showInputDialog("CONTINUE DRAWING?\n"
+				+ "\nTYPE ''No'' TO STOP,\n"
+				+ "TYPE ''Yes'' TO CONTINUE.");
+		
+		if(drawMoreS.equalsIgnoreCase("no")) {
+			drawing = false;
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "I'LL TAKE THAT AS A YES.");
+		}
+		}
 	}
 	
 	static int calculateTurnAngle(int numSides) {
@@ -69,7 +89,7 @@ public class TooManyShapes {
 	}
 	
 	static String notEnoughSides() {
-		return "I'm sorry we cannot make a shape with that many sides\n"
+		return "It is imposible to make a poloygon with that number of sides.\n"
 				+ "Please enter a number greater than 2";
 	}
 }

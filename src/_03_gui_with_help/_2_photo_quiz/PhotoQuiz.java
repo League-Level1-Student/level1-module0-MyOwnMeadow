@@ -18,23 +18,23 @@ public class PhotoQuiz {
 
 	public void run() {
 
-		JFrame quizWindow = new JFrame();
-		quizWindow.setVisible(true);
+		JFrame quiz = new JFrame();
+		quiz.setVisible(true);
 		// This will make sure the program exits when you close the window
-		quizWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		quiz.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// 1. find an image on the internet, and put its URL in a String
 		// variable (from your browser, right click on the image, and select
 		// “Copy Image Address” )
-
+		String lampryS = "https://www.hcn.org/issues/54.2/indigenous-affairs-fish-humble-suckers-pacific-lamprey-have-survived-5-mass-extinctions-but-are-now-under-threat/lamprey-brian-2-jpg/image";
 		// 2. create a variable of type "Component" that will hold your image
-
+		Component lampPNG;
 		// 3. use the "createImage()" method below to initialize your Component
-
+		lampPNG = createImage(lampryS);
 		// 4. add the image to the quiz window
-
+		quiz.add(lampPNG);
 		// 5. call the pack() method on the quiz window
-
+		quiz.pack();
 		// 6. ask a question that relates to the image
 
 		// 7. print "CORRECT" if the user gave the right answer
