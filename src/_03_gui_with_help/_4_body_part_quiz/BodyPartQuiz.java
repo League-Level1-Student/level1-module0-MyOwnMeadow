@@ -1,5 +1,7 @@
 package _03_gui_with_help._4_body_part_quiz;
 
+import java.awt.Component;
+
 /*
  *    Copyright (c) The League of Amazing Programmers 2013-2021
  *    Level 1
@@ -21,14 +23,14 @@ public class BodyPartQuiz {
 	// package,or if you prefer, get celebrity photos from the Internet,
 	// place them in the recipe package(body_part_quiz), and change the names below.
 
-	String firstImage = "src/_05_body_part_quiz/arnold.jpeg";
-	String secondImage = "src/_05_body_part_quiz/leonardo.jpeg";
-	String thirdImage = "src/_05_body_part_quiz/morgan.jpeg";
-	String fourthImage = "src/_05_body_part_quiz/jack.jpeg";
+	String image1 = "src/_03_gui_with_help/_4_body_part_quiz/arnold.jpeg";
+	String image2 = "src/_03_gui_with_help/_4_body_part_quiz/leonardo.jpeg";
+	String image3 = "src/_03_gui_with_help/_4_body_part_quiz/morgan.jpeg";
+	String image4 = "src/_03_gui_with_help/_4_body_part_quiz/jack.jpeg";
 
 	JFrame window = new JFrame();
 	JPanel panel = new JPanel();
-
+	
 	public void run() {
 		initializeGui();
 		startQuiz();
@@ -42,7 +44,7 @@ public class BodyPartQuiz {
 
 		// 3. Change the size of the window so that you can only see part of the
 		// image.
-		window.setSize(500, 500);
+		window.setSize(200, 250);
 
 		showNextImage();
 
@@ -51,25 +53,51 @@ public class BodyPartQuiz {
 	private void startQuiz() {
 
 		// 1. Make an int variable to hold the score.
-
+		int score = 0;
+		String person = "Arnold";
+		int qNum = 1;
 		// 2. Set the size of the window in the initializeGui() method 
-
+		
+		
+		while(qNum < 5) {
+			if(qNum == 1) {
+				person = "Arnold";
+			}
+			else if(qNum == 2) {
+				person = "Leonardo";
+			}
+			else if(qNum == 3) {
+				person = "Morgan";
+			}
+			else if(qNum == 4) {
+				person = "Jack";
+			}
+			else {
+				person = "ERORR";
+			}
 		// 4. Ask the user who this person is and store their answer
-		String guess = JOptionPane.showInputDialog("who is this?");
-
+			String guess = JOptionPane.showInputDialog("Who is this?");
+		
 		// 5. Check their answer. If they guessed correctly:
 		// -- Tell them they are right and increase the score by 1
-
+			if(guess.equalsIgnoreCase(person)) {
+				JOptionPane.showMessageDialog(null, "CURRECT!");
+				score += 1;
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "That's incorect. This photo is of " + person + ".");
+			}
 		// 6. Otherwise:
 		// -- Tell them they are wrong and who the person is
 
 		// 7. Use the showNextImage() method below to get the next image
-		showNextImage();
+			showNextImage();
 
 		// 8. .... repeat 4-7 for all your images.....
-
+			qNum += 1;
+		}
 		// 9. Show them their current score
-
+		JOptionPane.showMessageDialog(null, "FINAL SCORE: " + score);
 	}
 
 	public void showNextImage() {
@@ -88,13 +116,13 @@ public class BodyPartQuiz {
 	Iterator<JLabel> imageIterator;
 
 	private void initializeImageList() {
-		JLabel imageLabel = loadImage(firstImage);
+		JLabel imageLabel = loadImage(image1);
 		imageList.add(imageLabel);
-		imageLabel = loadImage(secondImage);
+		imageLabel = loadImage(image2);
 		imageList.add(imageLabel);
-		imageLabel = loadImage(thirdImage);
+		imageLabel = loadImage(image3);
 		imageList.add(imageLabel);
-		imageLabel = loadImage(fourthImage);
+		imageLabel = loadImage(image4);
 		imageList.add(imageLabel);
 	}
 
