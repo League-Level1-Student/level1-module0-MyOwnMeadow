@@ -49,17 +49,22 @@ public class CutenessTV implements ActionListener{
 		screen.pack();
 	}
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		JButton buttonPressed = (JButton) arg0.getSource();
+	public void actionPerformed(ActionEvent e) {
+		JButton buttonPressed = (JButton) e.getSource();
 		
-		if(buttonPressed == duckB ) {
+		if(buttonPressed == e.getSource()) {
+		if(buttonPressed == duckB) {
 			showDucks();
+			System.out.println("DUCK BUTTON PRESSED");
 		}
 		else if(buttonPressed == frogB) {
 			showFrog();
+			System.out.println("FROG BUTTON PRESSED");
 		}
 		else if(buttonPressed == uniB) {
 			showFluffyUnicorns();
+			System.out.println("UNI BUTTON PRESSED");
+		}
 		}
 	}
 //The Videos
